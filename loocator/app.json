@@ -18,7 +18,7 @@
       "supportsTablet": true,
       "bundleIdentifier": "com.loocrew.loocator",
       "config": {
-        "googleMapsApiKey": "APIKEYHERE"
+        "googleMapsApiKey": "AIzaSyBfnSjqURx0aYdDhccRpO7v27SlPpm2CNQ"
       }
     },
     "android": {
