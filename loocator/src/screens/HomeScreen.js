@@ -70,9 +70,13 @@ export default function HomeScreen({navigation}) {
         style={{height:'100%', width: '100%'}}
         customMapStyle={ isDarkMode ? DarkMapStyles : MapStyles}
         provider={PROVIDER_GOOGLE}
-        showsUserLocation={true}
+        // showsUserLocation={true}
         region={mapRegion}
       >
+        <Marker
+            coordinate={mapRegion}
+            image={require('../screens/assets/user-duck.png')}
+          />
         {RestroomLocations && RestroomLocations.map((location, index) => (
           <Marker
             key={index}

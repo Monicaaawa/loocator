@@ -21,9 +21,8 @@ export default function SettingScreen({navigation}){
         <Text style={{ marginTop: 30, fontSize: 20}}> loocator v1.0.0 </Text>
         <Image
             style={styles.image}
-            source={require('./assets/morefeatures.png')}/>        
-        <Text style={{ marginTop: 50, fontSize: 15}}> copyrighted © 2023 </Text>
-
+            source={require('./assets/morefeatures.png')}/>                 
+        <Text style={{ fontSize: 15}}> copyrighted © 2023 </Text>
 
         </View>
     );
