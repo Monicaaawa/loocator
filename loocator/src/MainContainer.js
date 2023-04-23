@@ -45,7 +45,6 @@ function MainScreen() {
 
     return (
         <Tab.Navigator initialRouteName = "Home">
-        
             <Tab.Screen
                 name = "Setting"
                 component = {SettingScreen}
@@ -89,8 +88,8 @@ function MainScreen() {
     )
 }
 
-function MainContainer(props){
-    return(
+function MainContainer(){
+    return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName = "SplashScreen" screenOptions={{headerShown: false,}}>
             <Stack.Screen
@@ -114,9 +113,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     title: {
-        width: 200,
-        height: 120,
-        marginBottom: -60,
+      width: 200,
+      height: 120,
+      marginBottom: -60,
     },
     start: {
       fontSize: 20,
@@ -126,8 +125,8 @@ const styles = StyleSheet.create({
       borderRadius: 20
     },
     duckLogo: {
-        width: 200,
-        height: 200,
+      width: 200,
+      height: 200,
     },
   });  
 

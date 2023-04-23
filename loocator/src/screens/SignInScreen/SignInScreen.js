@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useState } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from '../../../firebase';
 
@@ -19,38 +19,32 @@ export default function SignInScreen({navigation}){
     }
 
     return(
-        <KeyboardAvoidingView style={styles.container}
-            behavior="padding"
-        >
+        <KeyboardAvoidingView style={styles.container} behavior="padding">
+            <Image style={{ width: 100, height: 100, marginBottom: 10}} source={require("./bath-duck.png")}/>
             <View style={styles.inputContainer}>
                 <TextInput
-                    placeholder = "Email"
+                    placeholder = "e-mail"
                     value={email}
                     onChangeText={text => setEmail(text)}
+                    placeholderTextColor= 'black'
                     style = {styles.input}
                 />
+
                 <TextInput
-                    placeholder = "Password"
+                    placeholder = "password"
                     value={password}
                     onChangeText={text => setPassword(text)}
                     style = {styles.input}
+                    placeholderTextColor= 'black'
                     secureTextEntry
                 />
-            </View>
-            
-            <View style={styles.buttonContainer}>
-                <TouchableOpacity
-                    onPress={() => {}}
-                    style = {styles.button}
-                >
+                
+                <TouchableOpacity onPress={() => {}} style = {styles.input}>
                     <Text style={styles.buttonText}>login</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
-                    onPress={handleSignUp}
-                    style = {[styles.button, styles.buttonOutline]}
-                >
-                    <Text style={styles.buttonOutlineText}>create new account</Text>
-                </TouchableOpacity>
+
+                {/* FIX THE NAVIGATION TO SIGN UP PAGE */}
+                <Text style={styles.signUpText}>don't have an account? <Text onPress={()=>navigation.navigate('SignUpScreen')}>sign up! </Text></Text>
             </View>
         </KeyboardAvoidingView>
     );
@@ -66,11 +60,11 @@ const styles = StyleSheet.create({
         width: '80%',
     },
     input:{
-        backgroundColor:'white',
-        paddingHorizontal: 15,
-        paddingVertical: 10,
+        backgroundColor:'lightgray',
+        padding: 15,
         borderRadius: 10,
-        marginTop: 5,
+        marginTop: 15,
+        fontSize: 15,
     },
     buttonContainer:{
         width: '60%',
@@ -92,13 +86,18 @@ const styles = StyleSheet.create({
         borderWidth: 2,
     },
     buttonText:{
-        color: 'white',
-        fontWeight: '700',
-        fontSize: 16,
+        color: 'black',
+        fontSize: 15,
+        alignSelf: 'center'
+    },
+    signUpText:{
+        color: 'black',
+        fontSize: 15,
+        alignSelf: 'center',
+        marginVertical: 15,
     },
     buttonOutlineText:{
-        color: '#0782F9',
-        fontWeight: '700',
-        fontSize: 16,
+        color: 'black',
+        fontSize: 15,
     },
 })
