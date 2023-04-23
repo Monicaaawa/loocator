@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
+import { StyleSheet, View, Text } from 'react-native';
+import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
 import MapStyles from '../MapStyles.json';
@@ -43,6 +43,8 @@ export default function HomeScreen({navigation}) {
         name: result.name,
         address: result.vicinity,
         location: result.geometry.location,
+        rating: result.rating,
+        ratingNum: result.user_ratings_total,
       }));
       setRestroomLocations(restroomLocations);
       console.log(restroomLocations);
@@ -74,9 +76,19 @@ export default function HomeScreen({navigation}) {
               latitude: location.location.lat,
               longitude: location.location.lng,
             }}
-            title={location.name}
-            description={location.address}
-          />
+          >
+            <Callout tooltip>
+              <View>
+                <View style={styles.bubble}>
+                  <Text style={styles.name}>{location.name}</Text>
+                  <Text>{location.address}</Text>
+                  <Text>Rating: {location.rating} ({location.ratingNum})</Text>
+                </View>
+                <View style={styles.arrowBorder} />
+                <View style={styles.arrow} />
+              </View>
+            </Callout>
+          </Marker>
         ))}
       </MapView>
     </View>
@@ -89,5 +101,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  bubble: {
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+    backgroundColor: '#fff',
+    borderRadius: 6,
+    borderColor: '#ccc',
+    borderWidth: 0.5,
+    padding: 15,
+    width: 250,
+  },
+  name: {
+    fontSize: 16,
+    marginBottom: 2,
+  },
+  arrow: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#fff',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -32,
+  },
+  arrowBorder: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent',
+    borderTopColor: '#007a87',
+    borderWidth: 16,
+    alignSelf: 'center',
+    marginTop: -0.5,
+    // marginBottom: -15
   },
 });
