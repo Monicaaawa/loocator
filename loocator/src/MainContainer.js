@@ -6,15 +6,20 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 
+let title = <Image
+source={require('./screens/assets/duck-outline.png')} // Replace with your image source
+style={{ width: 24, height: 24, marginRight: 8 }}
+/>
+
 //Screens
 import HomeScreen from './screens/HomeScreen.js'
 import ProfileScreen from './screens/ProfileScreen.js'
 import SettingScreen from './screens/SettingScreen.js'
 
 //Screen names
-const homeName = 'Home';
-const profileName = 'Profile';
-const settingName = 'Setting';
+// const homeName = 'Home';
+// const profileName = 'Profile';
+// const settingName = 'Setting';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,23 +35,37 @@ function SplashScreen({navigation})
     
     <Image
         style={styles.duckLogo}
-        source={require('./screens/assets/rubber-duck.png')}/>
+        source={require('./screens/assets/loocator.gif')}/>
     </View>
   );
 }
 
 function MainScreen() {
     return (
-        <Tab.Navigator
-            initialRouteName = "Home"
-            screenOptions= {{headerShown: false}}>
+        <Tab.Navigator initialRouteName = "Home">
         
+            <Tab.Screen
+                name = "Setting"
+                component = {SettingScreen}
+                options = {{ title: '',
+                    tabBarIcon: ({focused, size, color}) => (
+                        <Ionicons style={{marginTop: 10}} name={focused ? 'settings' : 'settings-outline'} size={size} color='black'/>
+                    ),
+                    headerTitle: () => (
+                        <Image style={{ width: 32, height: 32, marginBottom: 10}} source={require("./screens/assets/duck-outline.png")} />
+                    )
+                }}
+            /> 
+
             <Tab.Screen
                 name = "Home"
                 component = {HomeScreen}
-                options = {{ title: 'Home',
+                options = {{ title: '',
                     tabBarIcon: ({focused, size, color}) => (
-                        <Ionicons name={focused ? 'home' : 'home-outline'} size={size} color={color}/>
+                        <Ionicons style={{marginTop: 10}} name={focused ? 'home' : 'home-outline'} size={size} color='black'/>
+                    ),
+                    headerTitle: () => (
+                        <Image style={{ width: 32, height: 32, marginBottom: 10}} source={require("./screens/assets/duck-outline.png")} />
                     )
                 }}
             />
@@ -54,23 +73,15 @@ function MainScreen() {
             <Tab.Screen
                 name = "Profile"
                 component = {ProfileScreen}
-                options = {{ title: 'Profile',
+                options = {{ title: '',
                     tabBarIcon: ({focused, size, color}) => (
-                        <Ionicons name={focused ? 'list' : 'list-outline'} size={size} color={color}/>
+                        <Ionicons style={{marginTop: 10}} name={focused ? 'person' : 'person-outline'} size={size} color='black'/>
+                    ),
+                    headerTitle: () => (
+                        <Image style={{ width: 32, height: 32, marginBottom: 10}} source={require("./screens/assets/duck-outline.png")} />
                     )
                 }}
             />  
-
-            <Tab.Screen
-                name = "Setting"
-                component = {SettingScreen}
-                options = {{ title: 'Setting',
-                    tabBarIcon: ({focused, size, color}) => (
-                        <Ionicons name={focused ? 'settings' : 'settings-outline'} size={size} color={color}/>
-                    )
-                }}
-            /> 
-
         </Tab.Navigator>
     )
 }
@@ -151,9 +162,8 @@ const styles = StyleSheet.create({
       borderRadius: 20
     },
     duckLogo: {
-      width: 150,
-      height: 150,
-      margin: 50,
+      width: 300,
+      height: 300,
     },
   });  
 
