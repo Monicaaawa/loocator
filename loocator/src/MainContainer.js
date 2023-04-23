@@ -7,20 +7,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { EventRegister } from 'react-native-event-listeners';
 
-let title = <Image
-source={require('./screens/assets/duck-outline.png')} // Replace with your image source
-style={{ width: 24, height: 24, marginRight: 8 }}
-/>
-
 //Screens
 import HomeScreen from './screens/HomeScreen.js'
 import ProfileScreen from './screens/ProfileScreen.js'
 import SettingScreen from './screens/SettingScreen.js'
-
-//Screen names
-// const homeName = 'Home';
-// const profileName = 'Profile';
-// const settingName = 'Setting';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -32,11 +22,12 @@ function SplashScreen({navigation})
   }, 2000);
   return (
     <View style={styles.container}>
-    <Text style={styles.title}> loocator </Text>
-    
-    <Image
-        style={styles.duckLogo}
-        source={require('./screens/assets/loocator.gif')}/>
+        <Image
+            style={styles.title}
+            source={require('./screens/assets/loocator-logo.png')}/>
+        <Image
+            style={styles.duckLogo}
+            source={require('./screens/assets/loocator.gif')}/>
     </View>
   );
 }
@@ -55,7 +46,6 @@ function MainScreen() {
 
     return (
         <Tab.Navigator initialRouteName = "Home">
-        
             <Tab.Screen
                 name = "Setting"
                 component = {SettingScreen}
@@ -99,49 +89,8 @@ function MainScreen() {
     )
 }
 
-function MainContainer(props){
-    return(
-        // <NavigationContainer>
-        //     <Tab.Navigator 
-        //         initial RouteName={HomeScreen}
-        //         screenOptions={
-        //             ({route})=>({
-        //             tabBarIcon: ({focused, color, size}) => {
-        //                 let iconName;
-        //                 let rn = route.name;
-
-        //                 if (rn == homeName){
-        //                     iconName = focused ? 'home' : 'home-outline';
-        //                 } else if (rn == profileName){
-        //                     iconName = focused ? 'list' : 'list-outline'; //TODO BROOKE: change logo later
-        //                 } else if (rn == settingName){
-        //                     iconName = focused ? 'settings' : 'settings-outline';
-        //                 } 
-
-        //                 return <Ionicons name={iconName} size={size} color={color}/>
-        //             },
-        //             "tabBarActiveTintColor": 0xA4BFFF,
-        //                 "tabBarInactiveTintColor": "grey",
-        //                 "tabBarLabelStyle": {
-        //                     "fontSize": 10
-        //                 },
-        //                 "tabBarStyle": [
-        //                     {
-        //                     "display": "flex"
-        //                     },
-        //                     null
-        //                 ],
-        //         })}
-        //         >
-                
-        //         {/* <Tab.Screen name="SplashScreen" component = {SplashScreen}/> */}
-        //         <Tab.Screen name={homeName} component = {HomeScreen}/>
-        //         <Tab.Screen name={profileName} component = {ProfileScreen}/>
-        //         <Tab.Screen name={settingName} component = {SettingScreen}/>
-            
-        //     </Tab.Navigator>
-        // </NavigationContainer>
-
+function MainContainer(){
+    return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName = "SplashScreen" screenOptions={{headerShown: false,}}>
             <Stack.Screen
@@ -165,7 +114,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     title: {
-      fontSize: 30,
+      width: 200,
+      height: 120,
+      marginBottom: -60,
     },
     start: {
       fontSize: 20,
@@ -175,8 +126,8 @@ const styles = StyleSheet.create({
       borderRadius: 20
     },
     duckLogo: {
-      width: 300,
-      height: 300,
+      width: 200,
+      height: 200,
     },
   });  
 
