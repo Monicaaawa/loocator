@@ -1,10 +1,11 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Ionicons from 'react-native-vector-icons/Ionicons'
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import { EventRegister } from 'react-native-event-listeners';
 
 let title = <Image
 source={require('./screens/assets/duck-outline.png')} // Replace with your image source
@@ -41,6 +42,17 @@ function SplashScreen({navigation})
 }
 
 function MainScreen() {
+    const [darkMode, setDarkMode] = useState(false);
+    useEffect(() => {
+        const listener = EventRegister.addEventListener('ChangeTheme', (data) => {
+            setDarkMode(data);
+            console.log("darkMode", data);
+        })
+        return () => {
+            EventRegister.removeAllListeners(listener);
+        }
+    },[])
+
     return (
         <Tab.Navigator initialRouteName = "Home">
         
@@ -68,6 +80,7 @@ function MainScreen() {
                         <Image style={{ width: 32, height: 32, marginBottom: 10}} source={require("./screens/assets/duck-outline.png")} />
                     )
                 }}
+                initialParams={{ isDarkMode: darkMode }}
             />
 
             <Tab.Screen

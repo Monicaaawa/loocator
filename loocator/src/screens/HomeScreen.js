@@ -4,9 +4,15 @@ import { StyleSheet, View, Text } from 'react-native';
 import MapView, { Marker, Callout, PROVIDER_GOOGLE } from 'react-native-maps';
 import * as Location from 'expo-location';
 import axios from 'axios';
-import MapStyles from '../MapStyles.json';
+import MapStyles from '../styles/MapStyles.json';
+import DarkMapStyles from '../styles/DarkMapStyles.json';
+import { useRoute } from '@react-navigation/native';
 
 export default function HomeScreen({navigation}) {
+  const route = useRoute();
+  const isDarkMode = route.params.isDarkMode;
+  console.log(route.params);
+
   const [RestroomLocations, setRestroomLocations] = useState(null);
 
   const [mapRegion, setMapRegion] = useState({
@@ -51,8 +57,6 @@ export default function HomeScreen({navigation}) {
     } catch (error) {
       console.error(error);
     }
-    
-  
   }
 
   useEffect(() => {
@@ -64,7 +68,7 @@ export default function HomeScreen({navigation}) {
       <StatusBar style="auto" />
       <MapView
         style={{height:'100%', width: '100%'}}
-        customMapStyle={MapStyles}
+        customMapStyle={ isDarkMode ? DarkMapStyles : MapStyles}
         provider={PROVIDER_GOOGLE}
         showsUserLocation={true}
         region={mapRegion}
@@ -76,6 +80,7 @@ export default function HomeScreen({navigation}) {
               latitude: location.location.lat,
               longitude: location.location.lng,
             }}
+            image={require('../screens/assets/duck.png')}
           >
             <Callout tooltip>
               <View>
