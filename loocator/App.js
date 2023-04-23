@@ -10,6 +10,5 @@ import SignInScreen from './src/screens/SignInScreen.js';
 export default function App() {
   return (
     <MainContainer />
-    // <SignInScreen />
   );
 }

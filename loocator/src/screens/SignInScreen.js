@@ -1,11 +1,6 @@
 import * as React from 'react';
-<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
 import { useState } from 'react';
-import { View, Text, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
-=======
-import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
->>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
+import { View, Text,  Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 // import { auth } from '../../firebase';
 import { useNavigation } from '@react-navigation/core';
@@ -52,15 +47,9 @@ function SignInScreen({navigation}) {
     }
 
     return(
-<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
+        profile ? navigation.navigate('Profile') : 
         <KeyboardAvoidingView style={styles.container} behavior="padding">
             <Image style={{ width: 100, height: 100, marginBottom: 10}} source={require("./bath-duck.png")}/>
-=======
-        profile ? navigation.navigate('Profile') : 
-        <KeyboardAvoidingView style={styles.container}
-            behavior="padding"
-        >
->>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder = "e-mail"
@@ -78,23 +67,19 @@ function SignInScreen({navigation}) {
                     placeholderTextColor= 'black'
                     secureTextEntry
                 />
-<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
-                
-                <TouchableOpacity onPress={() => {}} style = {styles.input}>
-=======
-            </View>
-            
-            <View style={styles.buttonContainer}>
+
                 <TouchableOpacity
                     onPress={handleLogin}
-                    style = {styles.button}
+                    style = {styles.input}
                 >
->>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
                     <Text style={styles.buttonText}>login</Text>
                 </TouchableOpacity>
-
-                {/* FIX THE NAVIGATION TO SIGN UP PAGE */}
-                <Text style={styles.signUpText}>don't have an account? <Text onPress={()=>navigation.navigate('SignUpScreen')}>sign up! </Text></Text>
+                <TouchableOpacity
+                    onPress={handleSignUp}
+                    style = {styles.input}
+                >
+                    <Text style={styles.signUpText}>create new account</Text>
+                </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
     );
