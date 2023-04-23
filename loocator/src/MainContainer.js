@@ -7,7 +7,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { EventRegister } from 'react-native-event-listeners';
 
-//Screens
 import HomeScreen from './screens/HomeScreen.js'
 import ProfileScreen from './screens/ProfileScreen.js'
 import SettingScreen from './screens/SettingScreen.js'
