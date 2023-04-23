@@ -1,26 +1,66 @@
 import * as React from 'react';
+<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
 import { useState } from 'react';
 import { View, Text, Image, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+=======
+import { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, KeyboardAvoidingView, TouchableOpacity } from 'react-native';
+>>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
 import { TextInput } from 'react-native-gesture-handler';
-import { auth } from '../../../firebase';
+// import { auth } from '../../firebase';
+import { useNavigation } from '@react-navigation/core';
 
-export default function SignInScreen({navigation}){
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
+function SignInScreen({navigation}) {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [profile, setProfile] = useState(false)
+    // const navigation = useNavigation()
+
+    // useEffect(() => {
+    //     const unsubscribe = auth.onAuthStateChanged(user => {
+    //         if (user){
+    //             navigation.replace("Profile")
+    //         }
+    //     })
+
+    //     return unsubscribe
+    // }, [])
 
     const handleSignUp = () => {
-        auth
-            .createUserWithEmailAndPassword(email, password)
-            .then(userCredentials => {
-                const user = userCredentials.user;
-                console.log(user.email);
-            })
-            .catch(error => alert(error.message))
+        setProfile(true)
+        // auth
+        //     .createUserWithEmailAndPassword(email, password)
+        //     .then(userCredentials => {
+        //         const user = userCredentials.user;
+        //         console.log('Registered with:', user.email);
+        //     })
+        //     .catch(error => alert(error.message))
+    }
+
+    const handleLogin = () => {
+        setProfile(true)
+        // auth
+        //     .signInWithEmailAndPassword(email,password)
+        //     .then(userCredentials => {
+        //         const user = userCredentials.user;
+        //         console.log('Loggied in with:', user.email);
+        //     })
+        //     .catch(error => alert(error.message))
     }
 
     return(
+<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
         <KeyboardAvoidingView style={styles.container} behavior="padding">
             <Image style={{ width: 100, height: 100, marginBottom: 10}} source={require("./bath-duck.png")}/>
+=======
+        profile ? navigation.navigate('Profile') : 
+        <KeyboardAvoidingView style={styles.container}
+            behavior="padding"
+        >
+>>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
             <View style={styles.inputContainer}>
                 <TextInput
                     placeholder = "e-mail"
@@ -38,8 +78,18 @@ export default function SignInScreen({navigation}){
                     placeholderTextColor= 'black'
                     secureTextEntry
                 />
+<<<<<<< HEAD:loocator/src/screens/SignInScreen/SignInScreen.js
                 
                 <TouchableOpacity onPress={() => {}} style = {styles.input}>
+=======
+            </View>
+            
+            <View style={styles.buttonContainer}>
+                <TouchableOpacity
+                    onPress={handleLogin}
+                    style = {styles.button}
+                >
+>>>>>>> eea053d (linked login & profile pages):loocator/src/screens/SignInScreen.js
                     <Text style={styles.buttonText}>login</Text>
                 </TouchableOpacity>
 
@@ -101,3 +151,5 @@ const styles = StyleSheet.create({
         fontSize: 15,
     },
 })
+
+export default SignInScreen;

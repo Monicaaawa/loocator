@@ -10,6 +10,7 @@ import { EventRegister } from 'react-native-event-listeners';
 import HomeScreen from './screens/HomeScreen.js'
 import ProfileScreen from './screens/ProfileScreen.js'
 import SettingScreen from './screens/SettingScreen.js'
+import SignInScreen from './screens/SignInScreen.js';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -99,6 +100,10 @@ function MainContainer(){
             <Stack.Screen
                 name = "MainScreen"
                 component = {MainScreen}
+            />
+            <Stack.Screen
+                name = "SignIn"
+                component = {SignInScreen}
             />
             </Stack.Navigator>
         </NavigationContainer>
